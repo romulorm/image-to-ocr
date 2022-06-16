@@ -5,8 +5,6 @@ const path = require('path')
 const session = require('express-session')
 const flash = require('express-flash')
 const tesseract = require("node-tesseract-ocr")
-const multer = require("multer")
-const fs = require('fs');
 
 const app = express()
 
@@ -38,12 +36,6 @@ app.use((req, res, next) => {
 
 // Arquivos estáticos públicos
     app.use(express.static(path.join(__dirname, '/public')));
-    app.use(express.static(path.join(__dirname, '/uploads')));
-
-
-// Storage
-    const upload = multer({ dest: "uploads/" });
-
 
 // Chamar página principal
 app.get('/', (req, res) => {
@@ -53,7 +45,7 @@ app.get('/', (req, res) => {
 app.post('/extract', (req, res) => {
     
     const config = {
-        lang: "eng",
+        lang: "por",
         oem: 1,
         psm: 3,
     };
