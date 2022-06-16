@@ -1,17 +1,14 @@
 <div class="jumbotron">
-    <h1 class="display-4">Extrator de texto em Imagens</h1>
-    <p class="lead">Sistema para extração de textos em imagens.</p>
+    <h1 class="display-4">Extrator de texto em imagens da Internet</h1>
     <hr>
-    <p>Escolha os arquivos a terem o seu texto extraído.</p>
     <div class="mb-3">
-        <label for="formFileMultiple" class="form-label">Selecione os arquivos</label>
-        <input class="form-control" type="file" id="formFileMultiple" multiple>
+        <form action="/extract" method="POST">
+            <label for="form" class="form-label">Insira a URL completa da imagem a aperte o botão para extrair o texto:</label>
+            <input class="form-control" type="text" name='imgurl' placeholder="https://caminho.da.imagem/imagem.jpg">
+            <button class="btn btn-success mt-3" type="submit">Extrair texto</button>
+        </form>
     </div>
     <div>
-        <a class="btn btn-success btn-lg" href="/extract" role="button">Extrair texto</a>
-    </div>
-    <hr>
-    <div>
-        <textarea name="texto" id="texto" cols="80" rows="30"></textarea>
+        <textarea name="texto" id="texto" cols="60" rows="30">{{dados}}</textarea>
     </div>
 </div>

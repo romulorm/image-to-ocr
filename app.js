@@ -4,6 +4,9 @@ const hbs = require('express-handlebars')
 const path = require('path')
 const session = require('express-session')
 const flash = require('express-flash')
+const tesseract = require("node-tesseract-ocr")
+const multer = require("multer")
+const fs = require('fs');
 
 const app = express()
 
@@ -35,16 +38,39 @@ app.use((req, res, next) => {
 
 // Arquivos estáticos públicos
     app.use(express.static(path.join(__dirname, '/public')));
+    app.use(express.static(path.join(__dirname, '/uploads')));
+
+
+// Storage
+    const upload = multer({ dest: "uploads/" });
 
 
 // Chamar página principal
 app.get('/', (req, res) => {
-    res.render('index')
+    res.render('index',{dados:''})
     })
 
-    app.post('/extract', (req, res) => {
-        
-    })
+app.post('/extract', (req, res) => {
+    
+    const config = {
+        lang: "eng",
+        oem: 1,
+        psm: 3,
+    };
+
+    const img = req.body.imgurl;
+
+    tesseract
+        .recognize(img, config)
+        .then((text) => {
+            res.render('index',{dados:text})
+            req.flash('success_msg', 'Texto extraído com sucesso')
+        })
+        .catch((error) => {
+            console.log(error.message);
+            req.flash('error_msg', 'Erro ao extrair o texto da imagem.')
+        });
+})
 
 
 //Iniciando servidor WEB
