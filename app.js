@@ -3,7 +3,6 @@ const express = require('express')
 const hbs = require('express-handlebars')
 const path = require('path')
 const session = require('express-session')
-const flash = require('express-flash')
 const tesseract = require("node-tesseract-ocr")
 
 const app = express()
@@ -14,9 +13,6 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
-
-//Flash
-app.use(flash())
 
 //Variáveis de Middleware
 app.use((req, res, next) => {
@@ -34,7 +30,7 @@ app.use((req, res, next) => {
     app.set('view engine', 'handlebars');
     app.set('views', path.join(__dirname, 'views'))
 
-// Arquivos estáticos públicos
+// Arquivos estáticos públicos (css, img, etc)
     app.use(express.static(path.join(__dirname, '/public')));
 
 // Chamar página principal
@@ -56,11 +52,10 @@ app.post('/extract', (req, res) => {
         .recognize(img, config)
         .then((text) => {
             res.render('index',{dados:text})
-            req.flash('success_msg', 'Texto extraído com sucesso')
         })
         .catch((error) => {
             console.log(error.message);
-            req.flash('error_msg', 'Erro ao extrair o texto da imagem.')
+            res.redirect('/')
         });
 })
 
