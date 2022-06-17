@@ -4,6 +4,7 @@ const hbs = require('express-handlebars')
 const path = require('path')
 const session = require('express-session')
 const tesseract = require("node-tesseract-ocr")
+const flash = require('express-flash')
 
 const app = express()
 
@@ -13,6 +14,9 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
+
+//Flash
+app.use(flash())
 
 //Variáveis de Middleware
 app.use((req, res, next) => {
@@ -39,24 +43,26 @@ app.get('/', (req, res) => {
     })
 
 app.post('/extract', (req, res) => {
-    
+
+    var imgurl = req.body.imgurl;
+
     const config = {
         lang: "por",
         oem: 1,
         psm: 3,
     };
 
-    const img = req.body.imgurl;
-
     tesseract
-        .recognize(img, config)
+        .recognize(imgurl, config)
         .then((text) => {
             res.render('index',{dados:text})
         })
         .catch((error) => {
             console.log(error.message);
+            req.flash('error_msg', 'Erro ao extrair o texto. Tente outra imagem.')
             res.redirect('/')
         });
+
 })
 
 
