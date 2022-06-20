@@ -10,6 +10,7 @@ COPY --chown=node:node . .
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y tesseract-ocr tesseract-ocr-por
+RUN npm install --location=global npm@8.12.2
 RUN npm install --production --silent
 EXPOSE 3000
 USER node
