@@ -1,0 +1,1 @@
+App para extração de texto em imagens da Internet.

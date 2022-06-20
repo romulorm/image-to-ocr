@@ -68,7 +68,7 @@ app.post('/extract', (req, res) => {
 
 //Iniciando servidor WEB
 
-    var port = process.env.PORT || 3000
+    var port = 3000
     var url = 'http://localhost'
 
-    app.listen(port, () => console.log(`Image to OCR executando no endereço ${url}${port}`))
+    app.listen(port, () => console.log(`Image to OCR executando no endereço ${url}:${port}`))

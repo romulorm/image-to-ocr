@@ -5,6 +5,7 @@
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
     "node-tesseract-ocr": "^2.2.1",
+    "npm": "^8.12.2",
     "path": "^0.12.7"
   },
   "scripts": {
