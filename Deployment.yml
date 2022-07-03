@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-to-ocr
+  labels:
+    app: image-to-ocr
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: image-to-ocr
+  template:
+    metadata:
+      labels:
+        app: image-to-ocr
+    spec:
+      containers:
+      - name: image-to-ocr
+        image: romulorm/image-to-ocr:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "250m"
+          limits:
+            memory: "1.5Gi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 60
+          failureThreshold: 3
