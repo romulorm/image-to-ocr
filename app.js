@@ -5,6 +5,7 @@ const path = require('path')
 const session = require('express-session')
 const tesseract = require("node-tesseract-ocr")
 const flash = require('express-flash')
+const pjson = require('./package.json')
 
 const app = express()
 
@@ -67,8 +68,8 @@ app.post('/extract', (req, res) => {
 
 
 //Iniciando servidor WEB
-
+    var version = pjson.version
     var port = 3000
     var url = 'http://localhost'
 
-    app.listen(port, () => console.log(`Image to OCR executando no endereço ${url}:${port}`))
+    app.listen(port, () => console.log(`Image to OCR versão ${version} executando no endereço ${url}:${port}`))

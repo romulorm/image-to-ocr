@@ -14,5 +14,24 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
-  }
+  },
+  "name": "image_to_ocr",
+  "description": "App para extração de texto em imagens da Internet.",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romulorm/image-to-ocr.git"
+  },
+  "keywords": [
+    "image",
+    "text",
+    "ocr"
+  ],
+  "author": "Romulo Moreira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romulorm/image-to-ocr/issues"
+  },
+  "homepage": "https://github.com/romulorm/image-to-ocr#readme"
 }
