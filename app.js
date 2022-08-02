@@ -69,7 +69,7 @@ app.post('/extract', (req, res) => {
 
 //Iniciando servidor WEB
     var version = pjson.version
-    var port = 3000
+    var port = 3001
     var url = 'http://localhost'
 
     app.listen(port, () => console.log(`Image to OCR versão ${version} executando no endereço ${url}:${port}`))

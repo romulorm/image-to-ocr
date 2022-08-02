@@ -16,8 +16,8 @@
     "nodemon": "^2.0.16"
   },
   "name": "image_to_ocr",
-  "description": "App para extração de texto em imagens da Internet.",
-  "version": "1.0.0",
+  "description": "App for extracting text from images from the Internet.",
+  "version": "1.0.1",
   "main": "app.js",
   "repository": {
     "type": "git",
