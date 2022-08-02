@@ -7,5 +7,5 @@ Node usage:
 
 
 Container usage:
-1) Run image container: docker run -d -p 3000:3000 romulorm/image-to-ocr
-2) Navigate to http://localhost:3000 in your Internet browser
+1) Run image container: docker run -d -p 3001:3001 romulorm/image-to-ocr
+2) Navigate to http://localhost:3001 in your Internet browser
